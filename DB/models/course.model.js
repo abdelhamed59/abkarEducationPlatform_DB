@@ -1,4 +1,4 @@
-import mongoose, { Types, version } from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const schema=mongoose.Schema({
     title:{
@@ -21,6 +21,10 @@ const schema=mongoose.Schema({
 },{
     timestamps:true,
     versionKey:false
+})
+
+schema.post("init",function(doc){
+    doc.imageCover=process.env.BASE_URL+"uploads/"+doc.imageCover
 })
 
 

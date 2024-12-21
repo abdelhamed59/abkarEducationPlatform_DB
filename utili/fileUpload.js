@@ -16,7 +16,6 @@ const uploadFile=()=>{
       function fileFilter (req, file, cb) {
       if(file.mimetype.startsWith("image")){
         cb(null, true)
-        console.log(file);
 
       }else{
         cb(new AppError("invalid upload image",401), false)

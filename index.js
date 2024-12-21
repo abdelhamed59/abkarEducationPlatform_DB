@@ -12,6 +12,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 const port = 3000
 app.use(express.json())
+app.use("/uploads", express.static("uploads"))
 connection()
 Bootstrap(app)
 
