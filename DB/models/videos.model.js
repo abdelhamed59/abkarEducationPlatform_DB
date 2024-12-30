@@ -25,6 +25,11 @@ const schema = mongoose.Schema({
     timestamps:true,
     versionKey:false
 })
+schema.post("init", function (doc) {
+    if (doc.videoUrl && !doc.videoUrl.startsWith("https")) {
+        doc.videoUrl = `${process.env.BASE_URL}/uploads/videos/${doc.videoUrl}`;
+    }
+});
 
 
 export const videoModel=mongoose.model("Video",schema)

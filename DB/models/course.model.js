@@ -24,7 +24,7 @@ const schema=mongoose.Schema({
 })
 
 schema.post("init",function(doc){
-    doc.imageCover=process.env.BASE_URL+"uploads/"+doc.imageCover
+    doc.imageCover=process.env.BASE_URL+"uploads/images/"+doc.imageCover
 })
 
 
