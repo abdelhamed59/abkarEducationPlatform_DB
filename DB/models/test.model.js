@@ -1,5 +1,4 @@
 import mongoose, { Types } from "mongoose";
-
 const schema = mongoose.Schema({
     title: {
         type: String,
@@ -10,10 +9,15 @@ const schema = mongoose.Schema({
         type: Types.ObjectId,
         ref: "User",
         required: true
+    },
+    courseId: {
+        type: Types.ObjectId,
+        ref: "Course"
     }
-},{
-    timestaps:true,
-    versionKey:false
-})
+}, {
+    timestamps: true,
+    versionKey: false
+});
+
 
 export const testModel=mongoose.model("Test",schema)
