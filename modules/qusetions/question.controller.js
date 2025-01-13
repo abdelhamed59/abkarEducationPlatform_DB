@@ -27,12 +27,12 @@ const updateQuestion = handleError(async (req, res, next) => {
     let { questionText, answers } = req.body;
 
     if (!Array.isArray(answers) || answers.length < 3) {
-        next(new AppError("Answers must be an array with at least three options.",400))
+       return next(new AppError("Answers must be an array with at least three options.",400))
     }
 
     const correctAnswersCount = answers.filter(answer => answer.isCorrect === true).length;
     if (correctAnswersCount !== 1) {
-        next(new AppError("Exactly one answer must be marked as correct.",400))
+      return  next(new AppError("Exactly one answer must be marked as correct.",400))
     }
 
     const question = await questionModel.findByIdAndUpdate(
@@ -41,8 +41,8 @@ const updateQuestion = handleError(async (req, res, next) => {
         { new: true, runValidators: true } 
     );
 
-    if (!question) {
-        next(new AppError("Question not found." ,404))
+    if (!question.length) {
+       return next(new AppError("Question not found." ,404))
     }
 
     res.status(200).json({ message: "Question updated successfully.", question });
